@@ -1,0 +1,39 @@
+{
+    "tables": {
+        "fwd_tbl": {
+            "rules": [
+                {
+                    "priority": 99, 
+                    "action": {
+                        "data": {
+                            "port": {
+                                "value": "v0.0"
+                            }
+                        }, 
+                        "type": "_miss"
+                    }, 
+                    "name": "miss", 
+                    "match": {
+                        "ipv4.srcAddr": {
+                            "mask": "0", 
+                            "value": "0"
+                        }, 
+                        "ipv4.dstAddr": {
+                            "mask": "0", 
+                            "value": "0"
+                        }, 
+                        "ipv4": {
+                            "value": "valid"
+                        }
+                    }
+                }
+            ], 
+            "default_rule": {
+                "action": {
+                    "type": "_drop"
+                }, 
+                "name": "default"
+            }
+        }
+    }
+}

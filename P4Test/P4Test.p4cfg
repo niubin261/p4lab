@@ -1,0 +1,30 @@
+{
+    "tables": {
+        "fwd_table": {
+            "rules": [
+                {
+                    "action": {
+                        "data": {
+                            "port": {
+                                "value": "v0.0"
+                            }
+                        }, 
+                        "type": "forward_act"
+                    }, 
+                    "name": "fwd", 
+                    "match": {
+                        "ipv4.dstAddr": {
+                            "value": "224.0.0.0/8"
+                        }
+                    }
+                }
+            ], 
+            "default_rule": {
+                "action": {
+                    "type": "drop_act"
+                }, 
+                "name": "drop"
+            }
+        }
+    }
+}

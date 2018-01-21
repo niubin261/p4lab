@@ -1,0 +1,25 @@
+{
+    "tables": {
+        "add_vlan_tbl": {
+            "default_rule": {
+                "action": {
+                    "type": "add_vlan"
+                }, 
+                "name": "default"
+            }
+        }, 
+        "do_fwd_tbl": {
+            "default_rule": {
+                "action": {
+                    "data": {
+                        "port": {
+                            "value": "v0.0"
+                        }
+                    }, 
+                    "type": "do_fwd"
+                }, 
+                "name": "default"
+            }
+        }
+    }
+}

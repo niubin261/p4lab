@@ -1,0 +1,59 @@
+{
+    "tables": {
+        "redirect": {
+            "rules": [
+                {
+                    "action": {
+                        "type": "do_cpu_encap"
+                    }, 
+                    "name": "fwd", 
+                    "match": {
+                        "standard_metadata.instance_type": {
+                            "value": "2"
+                        }
+                    }
+                }
+            ], 
+            "default_rule": {
+                "action": {
+                    "type": "_drop"
+                }, 
+                "name": "default"
+            }
+        }, 
+        "copy_to_cpu": {
+            "default_rule": {
+                "action": {
+                    "type": "do_copy_to_cpu"
+                }, 
+                "name": "default"
+            }
+        }, 
+        "fwd_table": {
+            "rules": [
+                {
+                    "action": {
+                        "data": {
+                            "port": {
+                                "value": "v0.0"
+                            }
+                        }, 
+                        "type": "fwd"
+                    }, 
+                    "name": "fwd", 
+                    "match": {
+                        "standard_metadata.clone_spec": {
+                            "value": "250"
+                        }
+                    }
+                }
+            ], 
+            "default_rule": {
+                "action": {
+                    "type": "_drop"
+                }, 
+                "name": "default"
+            }
+        }
+    }
+}
