@@ -1,0 +1,131 @@
+{
+    "tables": {
+        "set_rand_select": {
+            "default_rule": {
+                "action": {
+                    "data": {
+                        "cnt": {
+                            "value": "10"
+                        }, 
+                        "base": {
+                            "value": "0"
+                        }, 
+                        "ratio": {
+                            "value": "1"
+                        }
+                    }, 
+                    "type": "set_rand_select"
+                }, 
+                "name": "rand"
+            }
+        }, 
+        "int_instance_switch_id": {
+            "default_rule": {
+                "action": {
+                    "type": "int_set_header_switch_id"
+                }, 
+                "name": "default"
+            }
+        }, 
+        "tbl_read_egress_current_time": {
+            "default_rule": {
+                "action": {
+                    "type": "set_egress_global_tstamp"
+                }, 
+                "name": "read_egress"
+            }
+        }, 
+        "int_header_update": {
+            "default_rule": {
+                "action": {
+                    "type": "int_update_hop_cnt"
+                }, 
+                "name": "int"
+            }
+        }, 
+        "tbl_forward": {
+            "rules": [
+                {
+                    "action": {
+                        "data": {
+                            "espec": {
+                                "value": "p4"
+                            }
+                        }, 
+                        "type": "do_forward"
+                    }, 
+                    "name": "fwd", 
+                    "match": {
+                        "ipv4.dstAddr": {
+                            "mask": "255.255.255.0", 
+                            "value": "10.0.0.0"
+                        }, 
+                        "standard_metadata.ingress_port": {
+                            "value": "p1"
+                        }
+                    }
+                }, 
+                {
+                    "action": {
+                        "data": {
+                            "espec": {
+                                "value": "p4"
+                            }
+                        }, 
+                        "type": "do_forward"
+                    }, 
+                    "name": "forward2", 
+                    "match": {
+                        "ipv4.dstAddr": {
+                            "mask": "255.255.255.0", 
+                            "value": "10.0.0.0"
+                        }, 
+                        "standard_metadata.ingress_port": {
+                            "value": "p0"
+                        }
+                    }
+                }
+            ]
+        }, 
+        "int_instance_egress_port_id": {
+            "default_rule": {
+                "action": {
+                    "type": "int_set_header_egress_port_id"
+                }, 
+                "name": "default"
+            }
+        }, 
+        "int_instance_egress_tstamp": {
+            "default_rule": {
+                "action": {
+                    "type": "int_set_header_egress_tstamp"
+                }, 
+                "name": "default"
+            }
+        }, 
+        "int_instance_ingress_port_id": {
+            "default_rule": {
+                "action": {
+                    "type": "int_set_header_ingress_port_id"
+                }, 
+                "name": "default"
+            }
+        }, 
+        "tbl_read_ingress_current_time": {
+            "default_rule": {
+                "action": {
+                    "type": "set_ingress_global_tstamp"
+                }, 
+                "name": "read_ingress_time"
+            }
+        }, 
+        "int_instance_ingress_tstamp": {
+            "default_rule": {
+                "action": {
+                    "type": "int_set_header_ingress_tstamp"
+                }, 
+                "name": "default"
+            }
+        }
+    }
+}
